@@ -51,14 +51,24 @@ $(document).ready(function () {
             <!--{html_radios name=$key options=$product_options selected=$form_values[$key] separator='<br />'}-->
         </td>
     </tr>
-    <tr class="antracking-product-an7 antracking-product-anpro_st">
+    <tr class="antracking-product-an7_st antracking-product-anpro_st">
         <th>API設定コード</th>
         <td>
             <!--{assign var="key" value="api_settings_code"}-->
             <!--{if $form_errors[$key]}--><span class="attention"><!--{$form_errors[$key]}--></span><!--{/if}--><br />
             <textarea name="<!--{$key}-->" cols="50" rows="8" class="area50" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" style="<!--{$form_errors[$key]|sfGetErrorColor}-->"><!--{$form_values[$key]|h}--></textarea>
-            <span class="antracking-product-an7">API設定コードはAN7の各キャンペーンのトラッキングタグから取得できます。</span>
+            <span class="antracking-product-an7_st">API設定コードはAN7の各キャンペーンのトラッキングタグから取得できます。</span>
             <span class="antracking-product-anpro_st">API設定コードはアフィリナビ管理画面のセキュアトラッキングから取得できます。</span>
+        </td>
+    </tr>
+    <tr class="antracking-product-an7">
+        <th>売上トラッキングタグ</th>
+        <td>
+            <!--{assign var="key" value="an7_sell_tracking_tag"}-->
+            <!--{if $form_errors[$key]}--><span class="attention"><!--{$form_errors[$key]}--></span><!--{/if}--><br />
+            <textarea name="<!--{$key}-->" cols="50" rows="20" class="box50" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" wrap="off" style="<!--{$form_errors[$key]|sfGetErrorColor}-->"><!--{$form_values[$key]|h|smarty:nodefaults}--></textarea>
+            <span>各キャンペーンのトラッキングタグ画面で取得した売上トラッキングタグをそのまま入力して下さい。</span>
+            <span class="attention">注文番号はユーザー定義パラメーター「注文番号」に記録されます。AN7側で定義されていない場合でも記録されます。</span>
         </td>
     </tr>
     <tr class="antracking-product-anpro">

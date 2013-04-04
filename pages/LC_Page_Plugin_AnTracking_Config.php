@@ -54,6 +54,7 @@ class LC_Page_Plugin_AnTracking_Config extends LC_Page_Admin_Ex {
      */
     var $product_options = array(
         'an7' => 'AN7',
+//         'an7_st' => 'AN7 セキュアトラッキング',
         'anpro' => 'アフィリナビPRO',
         'anpro_st' => 'アフィリナビPRO + セキュアトラッキングプラグイン',
     );
@@ -125,6 +126,7 @@ class LC_Page_Plugin_AnTracking_Config extends LC_Page_Admin_Ex {
     protected function setFormValues($form, $settings) {
         $form->setValue('product', $settings->product);
         $form->setValue('api_settings_code', $settings->api ? json_encode($settings->api) : '');
+        $form->setValue('an7_sell_tracking_tag', $settings->an7_sell_tracking_tag);
         $form->setValue('anpro_sell_tracking_tag', $settings->anpro_sell_tracking_tag);
     }
     
@@ -151,6 +153,12 @@ class LC_Page_Plugin_AnTracking_Config extends LC_Page_Admin_Ex {
                 break;
                 
             case 'an7':
+                $settings->product = 'an7';
+                $settings->product_version = null;
+                $settings->api = null;
+                $settings->an7_sell_tracking_tag = $form->getValue('an7_sell_tracking_tag');
+                break;
+                
             case 'anpro_st':
                 $json = $form->getValue('api_settings_code');
                 $api_settings = json_decode($json);
@@ -177,6 +185,7 @@ class LC_Page_Plugin_AnTracking_Config extends LC_Page_Admin_Ex {
         $form = new SC_FormParam_Ex();
         $form->addParam('ご利用のアフィリナビ', 'product', 32, 'n', array('EXIST_CHECK', 'MAX_LENGTH_CHECK'));
         $form->addParam('設定コード', 'api_settings_code', LLTEXT_LEN, '', array('MAX_LENGTH_CHECK'));
+        $form->addParam('売上トラッキングタグ', 'an7_sell_tracking_tag', LLTEXT_LEN, '', array('MAX_LENGTH_CHECK'));
         $form->addParam('売上トラッキングタグ', 'anpro_sell_tracking_tag', LLTEXT_LEN, '', array('MAX_LENGTH_CHECK'));
         return $form;
     }
@@ -199,6 +208,15 @@ class LC_Page_Plugin_AnTracking_Config extends LC_Page_Admin_Ex {
         switch ($product) {
             case 'anpro':
                 $key = 'anpro_sell_tracking_tag';
+                $index = array_search($key, $form->keyname);
+                $anpro_sell_tracking_tag = $form->getValue($key);
+                if (strlen($anpro_sell_tracking_tag) == 0) {
+                    $errors[$key] = '※ ' . $form->disp_name[$index] . 'が空欄です。<br />';
+                }
+                break;
+                
+            case 'an7':
+                $key = 'an7_sell_tracking_tag';
                 $index = array_search($key, $form->keyname);
                 $anpro_sell_tracking_tag = $form->getValue($key);
                 if (strlen($anpro_sell_tracking_tag) == 0) {
