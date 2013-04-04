@@ -18,11 +18,11 @@ EC-CUBEアフィリナビトラッキングプラグイン
     tar xzvf master.tar.gz
     # 展開先の eccube-antracking-master に移動する
     cd eccube-antracking-master
-    # 以下のファイルを再圧縮する
+    # eccube-antracking-master 以下のファイルを AnTracking.tar.gz として再圧縮する
     tar czvf ../AnTracking.tar.gz *
     ```
 
 3. EC-CUBEの管理画面にログインし、オーナーズストア > プラグインの管理 と進みます。
-4. プラグイン登録にダウンロードしたファイルを指定しインストールします。
+4. プラグイン登録にて、2. で作成した書庫を指定しインストールします。
 5. アフィリナビトラッキングプラグインのプラグイン設定を開き、各種項目を入力します。
 6. プラグインを有効にします。
