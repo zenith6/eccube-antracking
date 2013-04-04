@@ -29,11 +29,12 @@
 <script type="text/javascript">
 $(document).ready(function () {
     var switchProductForm = function () {
-        $("input[name='product']").each(function () {
-            $(".antracking-product-" + this.value).hide();
+        var product = $("input[name='product']:checked").val();
+        $("[data-product]:not([data-product~='" + product + "'])").each(function () {
+            $(this).hide();
         });
-        $("input[name='product']:checked").each(function () {
-            $(".antracking-product-" + this.value).show();
+        $("[data-product~='" + product + "']").each(function () {
+            $(this).show();
         });
     };
 
@@ -51,17 +52,17 @@ $(document).ready(function () {
             <!--{html_radios name=$key options=$product_options selected=$form_values[$key] separator='<br />'}-->
         </td>
     </tr>
-    <tr class="antracking-product-an7_st antracking-product-anpro_st">
+    <tr data-product="an7_st anpro_st">
         <th>API設定コード</th>
         <td>
             <!--{assign var="key" value="api_settings_code"}-->
             <!--{if $form_errors[$key]}--><span class="attention"><!--{$form_errors[$key]}--></span><!--{/if}--><br />
             <textarea name="<!--{$key}-->" cols="50" rows="8" class="area50" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" style="<!--{$form_errors[$key]|sfGetErrorColor}-->"><!--{$form_values[$key]|h}--></textarea>
-            <span class="antracking-product-an7_st">API設定コードはAN7の各キャンペーンのトラッキングタグから取得できます。</span>
-            <span class="antracking-product-anpro_st">API設定コードはアフィリナビ管理画面のセキュアトラッキングから取得できます。</span>
+            <span data-product="an7_st">API設定コードはAN7の各キャンペーンのトラッキングタグから取得できます。</span>
+            <span data-product="anpro_st">API設定コードはアフィリナビ管理画面のセキュアトラッキングから取得できます。</span>
         </td>
     </tr>
-    <tr class="antracking-product-an7">
+    <tr data-product="an7">
         <th>売上トラッキングタグ</th>
         <td>
             <!--{assign var="key" value="an7_sell_tracking_tag"}-->
@@ -71,7 +72,7 @@ $(document).ready(function () {
             <span class="attention">注文番号はユーザー定義パラメーター「注文番号」に記録されます。AN7側で定義されていない場合でも記録されます。</span>
         </td>
     </tr>
-    <tr class="antracking-product-anpro">
+    <tr data-product="anpro">
         <th>売上トラッキングタグ</th>
         <td>
             <!--{assign var="key" value="anpro_sell_tracking_tag"}-->

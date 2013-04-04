@@ -56,7 +56,7 @@ class LC_Page_Plugin_AnTracking_Config extends LC_Page_Admin_Ex {
         'an7' => 'AN7',
 //         'an7_st' => 'AN7 セキュアトラッキング',
         'anpro' => 'アフィリナビPRO',
-        'anpro_st' => 'アフィリナビPRO + セキュアトラッキングプラグイン',
+//         'anpro_st' => 'アフィリナビPRO + セキュアトラッキングプラグイン',
     );
     
     function init() {
