@@ -43,7 +43,7 @@ class plugin_info {
     static $AUTHOR = "M-soft";
     
     /** 説明(必須)：プラグインの説明. */
-    static $DESCRIPTION = "自社アフィリエイトシステムのアフィリナビとの連携が簡単に可能になります。";
+    static $DESCRIPTION = "自社運営型アフィリエイトシステムのアフィリナビとの連携が簡単に可能になります。";
     
     /** プラグイン作者URL：プラグイン毎に設定出来るURL（説明ページなど） */
     static $AUTHOR_SITE_URL = "http://affilinavi.com/";
