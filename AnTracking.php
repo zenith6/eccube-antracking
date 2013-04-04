@@ -117,7 +117,6 @@ class AnTracking extends SC_Plugin_Base {
         $data = $tracker->buildSellTrackingData($context);
         $this->saveTrackingData('sell', $data);
 
-        GC_Utils_Ex::gfPrintLog(var_export($data, true));
         return $data;
     }
     
@@ -135,7 +134,6 @@ class AnTracking extends SC_Plugin_Base {
         }
         
         $data = $this->loadTrackingData('sell');
-        GC_Utils_Ex::gfPrintLog(var_export($data, true));
         
         // トラッキングデータがなければ何もしない。
         if (!$data) {
@@ -144,7 +142,6 @@ class AnTracking extends SC_Plugin_Base {
 
         $tracker = $this->getTracker();
         $tag = $tracker->buildSellTrackingTag($data);
-        GC_Utils_Ex::gfPrintLog(var_export($tag, true));
         
         // 売上トラッキングタグを挿入する。
         $transfomer = new SC_Helper_Transform_Ex($source);
