@@ -95,11 +95,37 @@ class AnTracking extends SC_Plugin_Base {
     public function register(SC_Helper_Plugin $plugin, $priority) {
         parent::register($plugin, $priority);
         
+        // デフォルトデバイス、スマートフォン向けのページにランディングトラッキングタグを挿入する。
+        $plugin->addAction('prefilterTransform', array(&$this, 'hookActionInsertLandTrackingTag'));
+        
         // 注文完了時に売上トラッキングタグ用のトラッキングデータを用意する。
         $plugin->addAction('LC_Page_Shopping_Confirm_action_confirm', array(&$this, 'hookActionPrepareSellTrackingData'));
         
         // 注文完了時の出力に売上トラッキングタグを挿入する。
         $plugin->addAction('outputfilterTransform', array(&$this, 'hookActionOutputSellTrackingTag'));
+    }
+    
+    /**
+     * フックアクション。デフォルトデバイス、スマートフォン向けのページにランディングトラッキングタグを挿入します。
+     * 
+     * @param string $source
+     * @param LC_Page_Ex $page
+     * @param string $filename
+     */
+    public function hookActionInsertLandTrackingTag(&$source, LC_Page_Ex $page, $filename) {
+        // 挿入対象ページは site_main.tpl、デバイスはPC及びスマートフォン。
+        $insert = in_array(basename(DIRECTORY_SEPARATOR . $filename), array('site_main.tpl'));
+        $insert = $insert && in_array($page->arrPageLayout['device_type_id'], array(DEVICE_TYPE_PC, DEVICE_TYPE_SMARTPHONE));
+        if (!$insert) {
+            return;
+        }
+        
+        $tracker = $this->getTracker();
+        $data = array();
+        $tag = $tracker->buildLandTrackingTag($data);
+        
+        // BODY最後尾を挿入する。
+        $source =  str_replace('</body>', $tag . '</body>', $source);
     }
     
     /**

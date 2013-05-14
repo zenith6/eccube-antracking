@@ -63,6 +63,15 @@ $(document).ready(function () {
         </td>
     </tr>
     <tr data-product="an7">
+        <th>ランディングトラッキングタグ</th>
+        <td>
+            <!--{assign var="key" value="an7_land_tracking_tag"}-->
+            <!--{if $form_errors[$key]}--><span class="attention"><!--{$form_errors[$key]}--></span><!--{/if}--><br />
+            <textarea name="<!--{$key}-->" cols="50" rows="20" class="box50" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" wrap="off" style="<!--{$form_errors[$key]|sfGetErrorColor}-->"><!--{$form_values[$key]|h|smarty:nodefaults}--></textarea>
+            <span>各キャンペーンのトラッキングタグ画面で取得したランディングトラッキングタグをそのまま入力して下さい。</span>
+        </td>
+    </tr>
+    <tr data-product="an7">
         <th>売上トラッキングタグ</th>
         <td>
             <!--{assign var="key" value="an7_sell_tracking_tag"}-->

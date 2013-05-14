@@ -28,6 +28,21 @@
  */
 class AN_AnproTracker extends AN_Tracker {
     /**
+     * @param array $data ランディングトラッキングデータ
+     * @return string ランディングトラッキングタグ
+     */
+    public function buildLandTrackingTag(array $data) {
+        return '';
+    }
+
+    /**
+     * @param stdClass $context 実行環境
+     */
+    public function buildLandTrackingData(stdClass $context) {
+        return array();
+    }
+    
+    /**
      * @param stdClass $context 実行環境
      */
     public function buildSellTrackingData(stdClass $context) {

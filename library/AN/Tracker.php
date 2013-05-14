@@ -41,6 +41,17 @@ abstract class AN_Tracker {
     }
     
     /**
+     * @param array $data ランディングトラッキングデータ
+     * @return string ランディングトラッキングタグ
+     */
+    abstract public function buildLandTrackingTag(array $data);
+
+    /**
+     * @param stdClass $context 実行環境
+     */
+    abstract public function buildLandTrackingData(stdClass $context);
+    
+    /**
      * @param array $data 売上トラッキングデータ
      * @return string 売上トラッキングタグ
      */
@@ -50,5 +61,4 @@ abstract class AN_Tracker {
      * @param stdClass $context 実行環境
      */
     abstract public function buildSellTrackingData(stdClass $context);
-    
 }
