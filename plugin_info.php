@@ -34,7 +34,7 @@ class plugin_info {
     static $PLUGIN_NAME = "EC-CUBEアフィリナビトラッキングプラグイン";
     
     /** プラグインバージョン(必須)：プラグインのバージョン. */
-    static $PLUGIN_VERSION = "1.0.0";
+    static $PLUGIN_VERSION = "1.1.0";
     
     /** 対応バージョン(必須)：対応するEC-CUBEバージョン. */
     static $COMPLIANT_VERSION = "2.12.0";
